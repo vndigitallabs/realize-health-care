@@ -22,7 +22,7 @@ export function BookButton({
     <Button
       size={size}
       variant={variant}
-      className={cn("rounded-full font-semibold", className)}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
       onClick={() => {
         track("cta_click", { cta: "book_consultation", location });
         track("appointment_request", { location });
@@ -51,7 +51,7 @@ export function CallButton({
       asChild={hasPhone}
       size={size}
       variant={variant}
-      className={cn("rounded-full font-semibold", className)}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
       {...(hasPhone ? {} : { onClick })}
     >
       {hasPhone ? (
@@ -87,7 +87,7 @@ export function WhatsAppButton({
       asChild={Boolean(href)}
       size={size}
       variant={variant}
-      className={cn("rounded-full font-semibold", className)}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
       {...(href ? {} : { onClick })}
     >
       {href ? (
@@ -118,7 +118,7 @@ export function TalkToSpecialistButton({
     <Button
       size="lg"
       variant={variant}
-      className={cn("rounded-full font-semibold", className)}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
       onClick={() => {
         track("cta_click", { cta: "talk_to_specialist", location });
         scrollToForm();
