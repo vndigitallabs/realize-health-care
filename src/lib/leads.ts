@@ -6,7 +6,7 @@ export type LeadPayload = {
   seekingFor: string;
   supportType: string;
   contactMethod: string;
-  message?: string;
+  message?: string | undefined;
 };
 
 /**
