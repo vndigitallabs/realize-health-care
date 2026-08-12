@@ -1,0 +1,130 @@
+import { Phone, MessageCircle, CalendarCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { clinic, hasPhone, hasWhatsapp, telHref, whatsappHref } from "@/config/clinic";
+import { track } from "@/lib/tracking";
+import { cn } from "@/lib/utils";
+
+export function scrollToForm() {
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("lead-name")?.focus({ preventScroll: true });
+}
+
+type Common = { className?: string; label?: string; location: string };
+
+export function BookButton({
+  className,
+  label = "Book a Consultation",
+  location,
+  size = "lg",
+  variant = "default",
+}: Common & { size?: "default" | "lg" | "sm"; variant?: "default" | "outline" | "secondary" }) {
+  return (
+    <Button
+      size={size}
+      variant={variant}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
+      onClick={() => {
+        track("cta_click", { cta: "book_consultation", location });
+        track("appointment_request", { location });
+        scrollToForm();
+      }}
+    >
+      <CalendarCheck aria-hidden="true" />
+      {label}
+    </Button>
+  );
+}
+
+export function CallButton({
+  className,
+  label = "Call Now",
+  location,
+  size = "lg",
+  variant = "outline",
+}: Common & { size?: "default" | "lg" | "sm"; variant?: "default" | "outline" | "secondary" }) {
+  const onClick = () => {
+    track("phone_click", { location });
+    if (!hasPhone) scrollToForm();
+  };
+  return (
+    <Button
+      asChild={hasPhone}
+      size={size}
+      variant={variant}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
+      {...(hasPhone ? {} : { onClick })}
+    >
+      {hasPhone ? (
+        <a href={telHref} onClick={onClick}>
+          <Phone aria-hidden="true" />
+          {label}
+          {clinic.phoneDisplay ? <span className="sr-only"> {clinic.phoneDisplay}</span> : null}
+        </a>
+      ) : (
+        <span className="inline-flex items-center gap-2">
+          <Phone aria-hidden="true" />
+          {label}
+        </span>
+      )}
+    </Button>
+  );
+}
+
+export function WhatsAppButton({
+  className,
+  label = "WhatsApp",
+  location,
+  size = "lg",
+  variant = "secondary",
+}: Common & { size?: "default" | "lg" | "sm"; variant?: "default" | "outline" | "secondary" }) {
+  const href = whatsappHref();
+  const onClick = () => {
+    track("whatsapp_click", { location });
+    if (!href) scrollToForm();
+  };
+  return (
+    <Button
+      asChild={Boolean(href)}
+      size={size}
+      variant={variant}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
+      {...(href ? {} : { onClick })}
+    >
+      {href ? (
+        <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick}>
+          <MessageCircle aria-hidden="true" />
+          {label}
+        </a>
+      ) : (
+        <span className="inline-flex items-center gap-2">
+          <MessageCircle aria-hidden="true" />
+          {label}
+        </span>
+      )}
+    </Button>
+  );
+}
+
+export function TalkToSpecialistButton({
+  className,
+  location,
+  variant = "outline",
+}: {
+  className?: string;
+  location: string;
+  variant?: "default" | "outline" | "secondary";
+}) {
+  return (
+    <Button
+      size="lg"
+      variant={variant}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
+      onClick={() => {
+        track("cta_click", { cta: "talk_to_specialist", location });
+        scrollToForm();
+      }}
+    >
+      Talk to a Specialist
+    </Button>
+  );
+}
