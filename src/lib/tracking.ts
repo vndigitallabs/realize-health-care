@@ -63,7 +63,7 @@ export function captureAttribution() {
       if (value) next[key] = value;
     }
     next.landing_page ??= window.location.pathname;
-    next.referrer ??= document.referrer || undefined;
+    if (!next.referrer && document.referrer) next.referrer = document.referrer;
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(next));
   } catch {
     /* storage unavailable — attribution is best-effort */
