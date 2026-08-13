@@ -16,7 +16,8 @@ export type TrackEvent =
   | "cta_click"
   | "form_start"
   | "faq_open"
-  | "doctor_profile_view";
+  | "doctor_profile_view"
+  | "exit_intent_shown";
 
 type Params = Record<string, string | number | boolean | undefined>;
 
