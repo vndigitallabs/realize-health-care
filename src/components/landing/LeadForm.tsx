@@ -94,8 +94,8 @@ export function LeadForm() {
         <CheckCircle2 className="mx-auto size-10 text-primary" aria-hidden="true" />
         <h3 className="mt-4 font-display text-2xl">Thank You — Your Request Has Been Received</h3>
         <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground">
-          Our team has received your request. You can also contact Realize Healthcare directly if you
-          would like to speak with the team.
+          Our team has received your request. You can also contact Realize Healthcare directly if
+          you would like to speak with the team.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <CallButton location="form_success" label="Call Realize Healthcare" variant="default" />

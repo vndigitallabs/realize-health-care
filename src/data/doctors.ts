@@ -61,7 +61,7 @@ export const doctors: Doctor[] = [
     name: "Dr. Rishi Raj Mohammed",
     role: "Consultant Psychiatrist • Ex-Consultant, IMH Erragadda",
     qualification: "MBBS, MD (Psychiatry) • APMC/FMR/86939",
-    bio: "\"My approach to psychiatry is rooted in compassion, clinical excellence and respect for every individual's journey. As Ex-Consultant at IMH Erragadda, I have managed a wide spectrum of psychiatric illnesses, including severe and complex mental health conditions. I am committed to delivering evidence-based, personalised care that promotes recovery, dignity and long-term well-being.\"",
+    bio: '"My approach to psychiatry is rooted in compassion, clinical excellence and respect for every individual\'s journey. As Ex-Consultant at IMH Erragadda, I have managed a wide spectrum of psychiatric illnesses, including severe and complex mental health conditions. I am committed to delivering evidence-based, personalised care that promotes recovery, dignity and long-term well-being."',
     expertise: [
       "Severe Mental Illness",
       "Schizophrenia and Psychosis",
@@ -78,7 +78,7 @@ export const doctors: Doctor[] = [
     name: "Dr. Kasapa Kalyan",
     role: "Consultant Psychiatrist",
     qualification: "MBBS, MD (Psychiatry)",
-    bio: "\"I believe that every individual deserves compassionate, respectful and evidence-based mental health care. I strive to understand each person's unique challenges and provide personalised treatment that addresses both symptoms and overall well-being, helping patients regain confidence and restore healthy relationships.\"",
+    bio: '"I believe that every individual deserves compassionate, respectful and evidence-based mental health care. I strive to understand each person\'s unique challenges and provide personalised treatment that addresses both symptoms and overall well-being, helping patients regain confidence and restore healthy relationships."',
     expertise: [
       "Sexual Health",
       "Schizophrenia",
@@ -95,7 +95,7 @@ export const doctors: Doctor[] = [
     name: "S. Pravalika Naidu",
     role: "Clinical Psychologist",
     qualification: "MA Psychology",
-    bio: "\"Psychological well-being is the foundation of a balanced and meaningful life. Effective therapy begins with listening, understanding and building a strong therapeutic relationship. I provide comprehensive psychological assessments and personalised counselling using evidence-based approaches for children, adolescents, adults and families.\"",
+    bio: '"Psychological well-being is the foundation of a balanced and meaningful life. Effective therapy begins with listening, understanding and building a strong therapeutic relationship. I provide comprehensive psychological assessments and personalised counselling using evidence-based approaches for children, adolescents, adults and families."',
     expertise: [
       "Cognitive Behaviour Therapy (CBT)",
       "Dialectical Behaviour Therapy (DBT)",
@@ -129,10 +129,7 @@ export const doctors: Doctor[] = [
     role: "Consultant Pulmonologist",
     qualification: "MBBS, MD (Pulmonology)",
     bio: "Evaluates and manages respiratory health, providing pulmonary function evaluation and preventive respiratory care to support overall well-being alongside mental-health treatment.",
-    expertise: [
-      "Pulmonary Function Testing",
-      "Preventive Respiratory Care",
-    ],
+    expertise: ["Pulmonary Function Testing", "Preventive Respiratory Care"],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 11:00 AM – 5:00 PM",
     photo: chandana.url,
@@ -143,10 +140,7 @@ export const doctors: Doctor[] = [
     role: "Consultant Critical Care Physician",
     qualification: "MBBS, MD, Diploma in Critical Care Medicine",
     bio: "Manages medical emergencies and high-risk situations, specialising in the early recognition of medical complications and stabilisation of critically ill patients, providing an added layer of safety within the clinical team.",
-    expertise: [
-      "Critical Care Stabilisation",
-      "Emergency Medical Care",
-    ],
+    expertise: ["Critical Care Stabilisation", "Emergency Medical Care"],
     languages: "English • Telugu • Hindi",
     consultation: "On-Call 24×7 • OPD Mon – Sat",
     photo: indra.url,

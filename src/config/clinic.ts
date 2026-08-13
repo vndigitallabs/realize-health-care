@@ -51,9 +51,7 @@ export const hasMaps = clinic.mapsUrl.length > 0;
 export const telHref = hasPhone ? `tel:${clinic.phone}` : undefined;
 
 export const whatsappHref = (message: string = clinic.whatsappPrefill) =>
-  hasWhatsapp
-    ? `https://wa.me/${clinic.whatsapp}?text=${encodeURIComponent(message)}`
-    : undefined;
+  hasWhatsapp ? `https://wa.me/${clinic.whatsapp}?text=${encodeURIComponent(message)}` : undefined;
 
 export const formattedAddress = [
   clinic.address.line1,

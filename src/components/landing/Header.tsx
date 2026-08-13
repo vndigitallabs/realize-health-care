@@ -80,7 +80,11 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:ml-4 lg:flex">
-          <CallButton location="header" size="default" className="hidden min-h-10 px-5 xl:inline-flex" />
+          <CallButton
+            location="header"
+            size="default"
+            className="hidden min-h-10 px-5 xl:inline-flex"
+          />
           <BookButton location="header" size="default" className="min-h-10 px-5" />
         </div>
 

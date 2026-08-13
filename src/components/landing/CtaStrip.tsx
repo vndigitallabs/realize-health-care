@@ -7,7 +7,10 @@ export function CtaStrip() {
       <Reveal className="mx-auto w-full max-w-6xl overflow-hidden rounded-[1.75rem] border border-primary/15 bg-gradient-to-br from-primary/8 via-card to-brand-sun/8 p-6 shadow-soft sm:rounded-3xl md:p-9">
         <div className="grid gap-6 md:grid-cols-[1.2fr_auto] md:items-center">
           <div>
-            <h2 id="cta-strip-heading" className="text-[1.6rem] text-balance sm:text-2xl md:text-3xl">
+            <h2
+              id="cta-strip-heading"
+              className="text-[1.6rem] text-balance sm:text-2xl md:text-3xl"
+            >
               Not Sure Where to Start?
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-muted-foreground md:text-base">

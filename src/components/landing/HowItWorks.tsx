@@ -40,7 +40,11 @@ export function HowItWorks() {
       </div>
 
       <div className="mt-10 flex justify-center">
-        <BookButton location="how_it_works" label="Book Your Consultation" className="w-full sm:w-auto" />
+        <BookButton
+          location="how_it_works"
+          label="Book Your Consultation"
+          className="w-full sm:w-auto"
+        />
       </div>
     </Section>
   );

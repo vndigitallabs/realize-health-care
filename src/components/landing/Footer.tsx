@@ -22,9 +22,7 @@ const columns = [
   },
   {
     heading: "Realize Group",
-    links: [
-      { label: "My Realize", href: "https://www.realizedeaddiction.com/", external: true },
-    ],
+    links: [{ label: "My Realize", href: "https://www.realizedeaddiction.com/", external: true }],
   },
   {
     heading: "Legal",

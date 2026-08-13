@@ -55,8 +55,7 @@ export const services: Service[] = [
   },
   {
     title: "Child & Adolescent Psychiatry",
-    description:
-      "Professional mental-health assessment and support for children and adolescents.",
+    description: "Professional mental-health assessment and support for children and adolescents.",
     cta: "Learn More",
     path: "/child-adolescent-psychiatry/",
   },
