@@ -15,7 +15,9 @@ export function Testimonials() {
         <ul className="mt-12 grid gap-5 md:grid-cols-3">
           {testimonials.map((item) => (
             <li key={item.quote} className="surface-card p-6">
-              <blockquote className="text-sm leading-relaxed">&ldquo;{item.quote}&rdquo;</blockquote>
+              <blockquote className="text-sm leading-relaxed">
+                &ldquo;{item.quote}&rdquo;
+              </blockquote>
               <p className="mt-4 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
                 {item.attribution}
               </p>
