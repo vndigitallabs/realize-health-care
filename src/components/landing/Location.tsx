@@ -1,5 +1,13 @@
 import { Clock, Globe, MapPin, Phone } from "lucide-react";
-import { clinic, formattedAddress, hasAddress, hasMaps, hasPhone, telHref } from "@/config/clinic";
+import {
+  clinic,
+  formattedAddress,
+  hasAddress,
+  hasMaps,
+  hasPhone,
+  mapQuery,
+  telHref,
+} from "@/config/clinic";
 import { track } from "@/lib/tracking";
 import { Section, SectionHeading } from "./Section";
 import { BookButton } from "./actions";
@@ -87,7 +95,7 @@ export function Location() {
           {hasMaps && hasAddress ? (
             <iframe
               title="Realize Healthcare location on Google Maps"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(formattedAddress)}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=15&output=embed`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="h-full min-h-80 w-full border-0"
