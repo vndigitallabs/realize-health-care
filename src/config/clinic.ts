@@ -10,26 +10,29 @@ export const clinic = {
   tagline: "Psychiatry & Mental Health Care in Hyderabad",
   website: "https://www.realizehealthcare.in/",
 
-  /** TODO (clinic admin): add the verified phone number in E.164 form, e.g. "+919000000000". */
-  phone: "",
-  /** Human-readable version shown in the UI. Leave empty if `phone` is empty. */
-  phoneDisplay: "",
-  /** TODO (clinic admin): add the verified WhatsApp number in E.164 digits, e.g. "919000000000". */
-  whatsapp: "",
+  /** Verified clinic phone number (E.164). */
+  phone: "+919553366366",
+  phoneDisplay: "+91 95533 66366",
+  /** Verified WhatsApp number (digits only, with country code). */
+  whatsapp: "919553366366",
 
-  /** TODO (clinic admin): add the verified clinic address. */
+  /** Verified clinic address. */
   address: {
-    line1: "",
-    line2: "",
-    locality: "",
+    line1: "Plot No. 1, South East Part, 2nd Floor, Surya Towers",
+    line2: "Koheda Road, Beside Rice Mill",
+    locality: "Pedda Amberpet",
     city: "Hyderabad",
     state: "Telangana",
-    postalCode: "",
+    postalCode: "501505",
     country: "IN",
   },
 
-  /** TODO (clinic admin): paste the Google Maps place / directions link. */
-  mapsUrl: "",
+  /** Directions link built from the verified address. */
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(
+      "Realize Healthcare, Plot No. 1, Surya Towers, Koheda Road, Pedda Amberpet, Hyderabad 501505",
+    ),
 
   hours: "Mon – Sat: 10:00 AM – 7:00 PM",
 
