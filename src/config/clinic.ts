@@ -40,6 +40,9 @@ export const clinic = {
     "Hello Realize Healthcare, I would like to know more about booking a mental-health consultation.",
 } as const;
 
+/** Short, geocodable form of the address used for the embedded map. */
+export const mapQuery = "Surya Towers, Koheda Road, Pedda Amberpet, Hyderabad 501505";
+
 export const hasPhone = clinic.phone.length > 0;
 export const hasWhatsapp = clinic.whatsapp.length > 0;
 export const hasAddress = clinic.address.line1.length > 0;
