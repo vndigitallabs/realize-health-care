@@ -1,28 +1,46 @@
 import { steps } from "@/data/content";
 import { Section, SectionHeading } from "./Section";
+import { Reveal } from "./Reveal";
 import { BookButton } from "./actions";
 
 export function HowItWorks() {
   return (
-    <Section tone="muted" labelledBy="how-heading">
+    <Section tone="lavender" labelledBy="how-heading">
       <SectionHeading
         id="how-heading"
         eyebrow="How It Works"
         title="What Happens During Your First Consultation?"
       />
-      <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {steps.map((step) => (
-          <li key={step.number} className="surface-card p-6">
-            <span className="font-display text-3xl text-primary/40">{step.number}</span>
-            <h3 className="mt-3 font-sans text-base font-semibold">{step.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-              {step.description}
-            </p>
-          </li>
-        ))}
-      </ol>
+
+      <div className="relative mt-10 sm:mt-14">
+        <span
+          aria-hidden="true"
+          className="absolute top-[2.35rem] right-8 left-8 hidden h-px bg-gradient-to-r from-primary/10 via-primary/35 to-primary/10 lg:block"
+        />
+        <ol className="relative grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          {steps.map((step, i) => (
+            <Reveal
+              as="li"
+              key={step.number}
+              delay={i * 100}
+              className="premium-card premium-card-hover flex h-full flex-col p-5 sm:p-6"
+            >
+              <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 font-display text-lg font-semibold text-primary">
+                {step.number}
+              </span>
+              <h3 className="mt-4 font-sans text-[15px] font-semibold sm:text-base">
+                {step.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                {step.description}
+              </p>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+
       <div className="mt-10 flex justify-center">
-        <BookButton location="how_it_works" label="Book Your Consultation" />
+        <BookButton location="how_it_works" label="Book Your Consultation" className="w-full sm:w-auto" />
       </div>
     </Section>
   );

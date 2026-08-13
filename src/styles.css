@@ -203,3 +203,136 @@
   background-clip: text;
   color: transparent;
 }
+
+/* ---------------------------------------------------------------
+ * Premium section system: alternating tints, glass, soft dividers
+ * --------------------------------------------------------------- */
+
+:root {
+  --tint-mist: oklch(0.982 0.011 220);
+  --tint-teal: oklch(0.978 0.019 168);
+  --tint-lavender: oklch(0.978 0.016 300);
+  --gradient-mist: linear-gradient(180deg, var(--tint-mist), var(--background) 85%);
+  --gradient-teal: linear-gradient(
+    180deg,
+    var(--tint-teal),
+    color-mix(in oklab, var(--tint-teal) 45%, var(--background))
+  );
+  --gradient-lavender: linear-gradient(
+    180deg,
+    var(--tint-lavender),
+    color-mix(in oklab, var(--tint-mist) 55%, var(--background))
+  );
+}
+
+@theme inline {
+  --color-tint-mist: var(--tint-mist);
+  --color-tint-teal: var(--tint-teal);
+  --color-tint-lavender: var(--tint-lavender);
+}
+
+@utility tone-mist {
+  background-image: var(--gradient-mist);
+}
+
+@utility tone-teal {
+  background-image: var(--gradient-teal);
+}
+
+@utility tone-lavender {
+  background-image: var(--gradient-lavender);
+}
+
+@utility glass-card {
+  background-color: color-mix(in oklab, var(--color-card) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid color-mix(in oklab, var(--color-border) 75%, transparent);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility premium-card {
+  background-color: var(--color-card);
+  border: 1px solid color-mix(in oklab, var(--color-border) 85%, transparent);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow 260ms ease,
+    transform 260ms ease,
+    border-color 260ms ease;
+}
+
+@utility premium-card-hover {
+  &:hover {
+    box-shadow: var(--shadow-card);
+    border-color: color-mix(in oklab, var(--color-primary) 22%, transparent);
+    transform: translateY(-3px);
+  }
+}
+
+@utility section-curve-top {
+  border-top-left-radius: clamp(1.75rem, 6vw, 3.5rem);
+  border-top-right-radius: clamp(1.75rem, 6vw, 3.5rem);
+}
+
+@utility section-curve-bottom {
+  border-bottom-left-radius: clamp(1.75rem, 6vw, 3.5rem);
+  border-bottom-right-radius: clamp(1.75rem, 6vw, 3.5rem);
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.995);
+    transition:
+      opacity 520ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
+
+/* Above-the-fold entrance: CSS-only so content is never hidden before hydration. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--fade-delay, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+}

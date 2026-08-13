@@ -21,6 +21,12 @@ const columns = [
     ],
   },
   {
+    heading: "Realize Group",
+    links: [
+      { label: "My Realize", href: "https://www.realizedeaddiction.com/", external: true },
+    ],
+  },
+  {
     heading: "Legal",
     links: [
       { label: "Privacy Policy", href: "#privacy" },
@@ -33,7 +39,7 @@ export function Footer() {
   const wa = whatsappHref();
   return (
     <footer className="border-t border-border bg-secondary/40 px-4 pt-14 pb-28 sm:px-6 md:pb-14">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2">
             <img
@@ -95,7 +101,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5 text-sm">
               {column.links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-muted-foreground hover:text-primary">
+                  <a
+                    href={link.href}
+                    {...("external" in link && link.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="text-muted-foreground transition-colors hover:text-primary"
+                  >
                     {link.label}
                   </a>
                 </li>
