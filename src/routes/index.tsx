@@ -18,6 +18,7 @@ import { Location } from "@/components/landing/Location";
 import { FinalCta } from "@/components/landing/FinalCta";
 import { Footer } from "@/components/landing/Footer";
 import { MobileCtaBar, WhatsAppFab } from "@/components/landing/FloatingCtas";
+import { ExitIntent } from "@/components/landing/ExitIntent";
 import { clinic, formattedAddress, hasAddress, hasPhone } from "@/config/clinic";
 import { faqs, services } from "@/data/content";
 import { captureAttribution } from "@/lib/tracking";
@@ -126,6 +127,7 @@ function LandingPage() {
       <Footer />
       <WhatsAppFab />
       <MobileCtaBar />
+      <ExitIntent />
     </div>
   );
 }
