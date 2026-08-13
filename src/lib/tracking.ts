@@ -17,6 +17,7 @@ export type TrackEvent =
   | "form_start"
   | "faq_open"
   | "doctor_profile_view"
+  | "doctor_card_expand"
   | "exit_intent_shown";
 
 type Params = Record<string, string | number | boolean | undefined>;
