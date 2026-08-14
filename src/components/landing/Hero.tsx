@@ -1,5 +1,6 @@
 import { HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
 import { images } from "@/config/images";
+import { SafeImage } from "./SafeImage";
 import { BookButton, TalkToSpecialistButton } from "./actions";
 
 const trustCards = [
@@ -65,7 +66,7 @@ export function Hero() {
             aria-hidden="true"
             className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary/12 via-transparent to-brand-sun/12 blur-xl"
           />
-          <img
+          <SafeImage
             src={images.hero}
             alt="A psychiatrist in conversation with a patient during a private consultation at a Hyderabad clinic"
             width={1280}

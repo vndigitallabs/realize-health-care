@@ -5,6 +5,7 @@ import { hasWhatsapp, whatsappHref } from "@/config/clinic";
 import { track } from "@/lib/tracking";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { SafeImage } from "./SafeImage";
 import { scrollToForm } from "./actions";
 
 export function Doctors() {
@@ -40,7 +41,7 @@ export function Doctors() {
               className="premium-card premium-card-hover group flex h-full flex-col overflow-hidden"
             >
               <div className="relative overflow-hidden">
-                <img
+                <SafeImage
                   src={doctor.photo}
                   alt={`${doctor.name}, ${doctor.role}`}
                   loading="lazy"
