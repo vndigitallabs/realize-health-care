@@ -4,8 +4,17 @@ import { clinic, hasPhone, hasWhatsapp, telHref, whatsappHref } from "@/config/c
 import { track } from "@/lib/tracking";
 import { cn } from "@/lib/utils";
 
+/**
+ * Sends the visitor to the consultation form. On pages that render the form
+ * inline it scrolls; elsewhere (e.g. the homepage) it opens the contact page.
+ */
 export function scrollToForm() {
-  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const target = document.getElementById("contact");
+  if (!target) {
+    window.location.assign("/contact#contact");
+    return;
+  }
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
   document.getElementById("lead-name")?.focus({ preventScroll: true });
 }
 

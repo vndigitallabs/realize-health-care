@@ -7,7 +7,7 @@ export function WhatsAppFab() {
   const href = whatsappHref();
   return (
     <a
-      href={href ?? "#contact"}
+      href={href ?? "/contact#contact"}
       {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       onClick={() => {
         track("whatsapp_click", { location: "floating_button" });
@@ -35,7 +35,7 @@ export function MobileCtaBar() {
       className="fixed inset-x-0 bottom-0 z-40 flex border-t border-border bg-background/95 backdrop-blur md:hidden"
     >
       <a
-        href={hasPhone ? telHref : "#contact"}
+        href={hasPhone ? telHref : "/contact#contact"}
         onClick={() => {
           track("phone_click", { location: "mobile_bar" });
           if (!hasPhone) scrollToForm();
@@ -47,7 +47,7 @@ export function MobileCtaBar() {
         Call
       </a>
       <a
-        href={wa ?? "#contact"}
+        href={wa ?? "/contact#contact"}
         {...(wa ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         onClick={() => {
           track("whatsapp_click", { location: "mobile_bar" });
