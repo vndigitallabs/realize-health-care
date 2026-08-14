@@ -1,31 +1,19 @@
 import { HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
 import { images } from "@/config/images";
 import { SafeImage } from "./SafeImage";
-import { BookButton, TalkToSpecialistButton } from "./actions";
+import { BookButton, CallButton, WhatsAppButton } from "./actions";
 
-const trustCards = [
-  {
-    icon: Stethoscope,
-    title: "Qualified Clinical Team",
-    description: "Professional psychiatric and mental-health care.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Personalised Care",
-    description: "Treatment planning based on individual assessment.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Confidential Consultation",
-    description: "A respectful environment for discussing sensitive concerns.",
-  },
+const trustPoints = [
+  { icon: Stethoscope, label: "Qualified Clinical Team" },
+  { icon: ShieldCheck, label: "Confidential Consultation" },
+  { icon: HeartHandshake, label: "Personalised Care" },
 ];
 
 export function Hero() {
   return (
     <section
-      id="top"
-      className="hero-canvas relative overflow-hidden px-4 pt-10 pb-14 sm:px-6 md:pt-16 md:pb-24"
+      id="hero"
+      className="hero-canvas relative overflow-hidden px-4 pt-10 pb-10 sm:px-6 md:pt-16 md:pb-14"
     >
       <div
         aria-hidden="true"
@@ -36,7 +24,7 @@ export function Hero() {
         className="pointer-events-none absolute -bottom-32 -left-24 size-72 rounded-full bg-brand-sun/10 blur-3xl md:size-96"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
         <div className="fade-up">
           <p className="inline-flex flex-wrap items-center gap-2 rounded-full border border-primary/20 bg-card/70 px-3.5 py-1.5 text-[10px] font-semibold tracking-[0.16em] text-primary uppercase backdrop-blur-sm sm:text-[11px]">
             Psychiatry • Psychology • Mental Health Care
@@ -44,18 +32,23 @@ export function Hero() {
           <h1 className="mt-5 text-[2rem] leading-[1.08] text-balance sm:text-[2.75rem] lg:text-[3.4rem]">
             Psychiatry &amp; Mental Health Care in <span className="text-primary">Hyderabad</span>
           </h1>
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base md:text-lg">
-            Professional assessment and personalised mental-health care from a multidisciplinary
-            clinical team. Speak with Realize Healthcare to understand the appropriate next step for
-            you or your family.
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base md:text-lg">
+            Professional assessment and personalised care from a qualified multidisciplinary team.
+            Speak with our clinicians to understand the right next step for you or your family.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-7 grid gap-3 sm:auto-cols-max sm:grid-flow-col">
             <BookButton location="hero" className="w-full sm:w-auto" />
-            <TalkToSpecialistButton location="hero" className="w-full sm:w-auto" />
+            <WhatsAppButton location="hero" label="WhatsApp Now" className="w-full sm:w-auto" />
+            <CallButton location="hero" className="w-full sm:w-auto" />
           </div>
-          <p className="mt-5 text-[13px] text-muted-foreground sm:text-sm">
-            Professional care • Respectful support • Individualised treatment planning
-          </p>
+          <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5">
+            {trustPoints.map(({ icon: Icon, label }) => (
+              <li key={label} className="flex min-w-0 items-center gap-2 text-[13px] font-medium sm:text-sm">
+                <Icon className="size-4 shrink-0 text-primary" aria-hidden="true" />
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div
@@ -83,22 +76,6 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      <ul className="relative mx-auto mt-12 grid w-full max-w-6xl gap-4 sm:grid-cols-3 md:mt-16">
-        {trustCards.map(({ icon: Icon, title, description }, i) => (
-          <li
-            key={title}
-            className="glass-card fade-up p-5"
-            style={{ "--fade-delay": `${240 + i * 90}ms` } as React.CSSProperties}
-          >
-            <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
-              <Icon className="size-5" aria-hidden="true" />
-            </span>
-            <h2 className="mt-4 font-sans text-[15px] font-semibold sm:text-base">{title}</h2>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{description}</p>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }
