@@ -6,6 +6,7 @@ import { facilityPhotos, facilitySlots } from "@/data/content";
 import { track } from "@/lib/tracking";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
+import { SafeImage } from "./SafeImage";
 
 export function Facility() {
   const [active, setActive] = useState<number | null>(null);
@@ -45,7 +46,7 @@ export function Facility() {
                 }}
                 className="group block size-full overflow-hidden rounded-2xl border border-border/70 shadow-soft"
               >
-                <img
+                <SafeImage
                   src={item.src}
                   alt={item.alt}
                   loading="lazy"
@@ -120,7 +121,7 @@ export function Facility() {
           >
             <X className="size-5" aria-hidden="true" />
           </button>
-          <img
+          <SafeImage
             src={photo.src}
             alt={photo.alt}
             onClick={(e) => e.stopPropagation()}
