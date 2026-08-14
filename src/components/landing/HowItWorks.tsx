@@ -3,13 +3,13 @@ import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
 import { BookButton } from "./actions";
 
-export function HowItWorks() {
+export function HowItWorks({ compact = false }: { compact?: boolean } = {}) {
   return (
     <Section tone="lavender" labelledBy="how-heading">
       <SectionHeading
         id="how-heading"
         eyebrow="How It Works"
-        title="What Happens During Your First Consultation?"
+        title="How It Works"
       />
 
       <div className="relative mt-10 sm:mt-14">
@@ -31,9 +31,11 @@ export function HowItWorks() {
               <h3 className="mt-4 font-sans text-[15px] font-semibold sm:text-base">
                 {step.title}
               </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {step.description}
-              </p>
+              {compact ? null : (
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                  {step.description}
+                </p>
+              )}
             </Reveal>
           ))}
         </ol>

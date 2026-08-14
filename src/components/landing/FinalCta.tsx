@@ -1,5 +1,5 @@
 import { Reveal } from "./Reveal";
-import { BookButton, TalkToSpecialistButton, WhatsAppButton } from "./actions";
+import { BookButton, CallButton, WhatsAppButton } from "./actions";
 
 export function FinalCta() {
   return (
@@ -24,7 +24,7 @@ export function FinalCta() {
         </p>
         <div className="mt-8 grid gap-3 sm:grid-cols-3">
           <BookButton location="final_cta" className="w-full" />
-          <TalkToSpecialistButton location="final_cta" className="w-full" />
+          <CallButton location="final_cta" label="Call Now" className="w-full" />
           <WhatsAppButton location="final_cta" className="w-full" />
         </div>
       </Reveal>

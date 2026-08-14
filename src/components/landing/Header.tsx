@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import { ExternalLink, Menu, Phone, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ExternalLink, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { images } from "@/config/images";
 import { SafeImage } from "./SafeImage";
-import { clinic, hasPhone, telHref } from "@/config/clinic";
+import { clinic, hasPhone, hasWhatsapp, telHref, whatsappHref } from "@/config/clinic";
 import { track } from "@/lib/tracking";
 import { cn } from "@/lib/utils";
-import { BookButton, CallButton, scrollToForm } from "./actions";
+import { BookButton, scrollToForm } from "./actions";
 
 const navItems = [
-  { label: "Services", href: "#services" },
-  { label: "Our Doctors", href: "#doctors" },
-  { label: "Why Realize", href: "#why-realize" },
-  { label: "FAQs", href: "#faqs" },
-  { label: "Contact", href: "#contact" },
-];
+  { label: "Services", to: "/services" },
+  { label: "Doctors", to: "/doctors" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+] as const;
 
 const MY_REALIZE_URL = "https://www.realizedeaddiction.com/";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const wa = whatsappHref();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -45,7 +46,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto grid h-16 w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:px-6 md:h-20 lg:flex lg:gap-4">
-        <a href="#top" className="flex min-w-0 shrink-0 items-center gap-2 lg:mr-2">
+        <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2 lg:mr-2">
           <SafeImage
             src={images.logo}
             alt="Realize Healthcare logo"
@@ -57,17 +58,18 @@ export function Header() {
           <span className="font-display text-[13px] leading-tight font-semibold tracking-tight whitespace-nowrap sm:text-[15px] lg:text-[17px]">
             REALIZE <span className="text-primary">HEALTHCARE</span>
           </span>
-        </a>
+        </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">
           {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
+            <Link
+              key={item.to}
+              to={item.to}
+              activeProps={{ className: "text-primary" }}
               className="relative whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-0 after:rounded-full after:bg-primary after:transition-[width] after:duration-300 hover:text-primary hover:after:w-full"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <a
             href={MY_REALIZE_URL}
@@ -82,11 +84,18 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:ml-4 lg:flex">
-          <CallButton
-            location="header"
-            size="default"
-            className="hidden min-h-10 px-5 xl:inline-flex"
-          />
+          {hasWhatsapp && wa ? (
+            <a
+              href={wa}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("whatsapp_click", { location: "header" })}
+              className="hidden min-h-10 items-center gap-1.5 rounded-full border border-primary/30 px-4 text-sm font-semibold text-primary transition-colors hover:bg-primary/5 xl:inline-flex"
+            >
+              <MessageCircle className="size-4" aria-hidden="true" />
+              WhatsApp
+            </a>
+          ) : null}
           <BookButton location="header" size="default" className="min-h-10 px-5" />
         </div>
 
@@ -134,14 +143,14 @@ export function Header() {
         >
           <ul className="grid gap-1">
             {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
+              <li key={item.to}>
+                <Link
+                  to={item.to}
                   onClick={() => setOpen(false)}
                   className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium hover:bg-secondary"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>

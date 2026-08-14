@@ -37,8 +37,9 @@ export function Doctors() {
             <Reveal
               as="li"
               key={doctor.slug}
+              id={doctor.slug}
               delay={(i % 4) * 80}
-              className="premium-card premium-card-hover group flex h-full flex-col overflow-hidden"
+              className="premium-card premium-card-hover group flex h-full scroll-mt-28 flex-col overflow-hidden"
             >
               <div className="relative overflow-hidden">
                 <SafeImage
