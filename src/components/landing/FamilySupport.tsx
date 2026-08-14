@@ -1,6 +1,7 @@
 import { Section } from "./Section";
 import { Reveal } from "./Reveal";
-import familyImage from "@/assets/family-support.jpg";
+import { images } from "@/config/images";
+import { SafeImage } from "./SafeImage";
 import { TalkToSpecialistButton, WhatsAppButton } from "./actions";
 
 const prompts = [
@@ -18,8 +19,8 @@ export function FamilySupport() {
             aria-hidden="true"
             className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary/12 via-transparent to-brand-sun/12 blur-xl"
           />
-          <img
-            src={familyImage}
+          <SafeImage
+            src={images.familySupport}
             alt="A family member sitting with a relative while speaking to a clinician during a consultation"
             width={1280}
             height={960}

@@ -1,4 +1,5 @@
-import logo from "@/assets/realize_logo.png.asset.json";
+import { images } from "@/config/images";
+import { SafeImage } from "./SafeImage";
 import {
   clinic,
   formattedAddress,
@@ -40,13 +41,14 @@ export function Footer() {
       <div className="mx-auto grid w-full max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <div className="flex items-center gap-2">
-            <img
-              src={logo.url}
+            <SafeImage
+              src={images.logo}
               alt="Realize Healthcare logo"
               width={40}
               height={40}
               loading="lazy"
               className="h-9 w-9 object-contain"
+              fallbackClassName="rounded-lg"
             />
             <span className="font-display text-lg font-semibold">
               REALIZE <span className="text-primary">HEALTHCARE</span>
