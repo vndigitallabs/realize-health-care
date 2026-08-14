@@ -1,5 +1,5 @@
 import { HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
-import heroImage from "@/assets/hero-consultation.jpg.asset.json";
+import { images } from "@/config/images";
 import { BookButton, TalkToSpecialistButton } from "./actions";
 
 const trustCards = [
@@ -66,7 +66,7 @@ export function Hero() {
             className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-primary/12 via-transparent to-brand-sun/12 blur-xl"
           />
           <img
-            src={heroImage.url}
+            src={images.hero}
             alt="A psychiatrist in conversation with a patient during a private consultation at a Hyderabad clinic"
             width={1280}
             height={1024}

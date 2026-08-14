@@ -1,11 +1,4 @@
-import mahendra from "@/assets/dr-mahendra.jpg.asset.json";
-import rishi from "@/assets/dr-rishi.jpg.asset.json";
-import sharanya from "@/assets/dr-sharanya.jpg.asset.json";
-import kalyan from "@/assets/dr-kalyan.jpg.asset.json";
-import pravalika from "@/assets/dr-pravalika.jpg.asset.json";
-import indra from "@/assets/dr-indra.jpg.asset.json";
-import ravali from "@/assets/dr-ravali.jpg.asset.json";
-import chandana from "@/assets/dr-chandana.jpg.asset.json";
+import { images } from "@/config/images";
 
 export type Doctor = {
   slug: string;
@@ -36,7 +29,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 10:00 AM – 7:00 PM",
-    photo: mahendra.url,
+    photo: images.doctors.mahendra,
   },
   {
     slug: "dr-j-sharanya",
@@ -54,7 +47,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 10:00 AM – 6:00 PM",
-    photo: sharanya.url,
+    photo: images.doctors.sharanya,
   },
   {
     slug: "dr-rishi-raj-mohammed",
@@ -71,7 +64,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi • Urdu",
     consultation: "Mon – Sat: 10:00 AM – 6:00 PM",
-    photo: rishi.url,
+    photo: images.doctors.rishi,
   },
   {
     slug: "dr-kasapa-kalyan",
@@ -88,7 +81,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 11:00 AM – 6:00 PM",
-    photo: kalyan.url,
+    photo: images.doctors.kalyan,
   },
   {
     slug: "s-pravalika-naidu",
@@ -106,7 +99,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 10:00 AM – 6:00 PM",
-    photo: pravalika.url,
+    photo: images.doctors.pravalika,
   },
   {
     slug: "dr-ravali",
@@ -121,7 +114,7 @@ export const doctors: Doctor[] = [
     ],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 10:00 AM – 5:00 PM",
-    photo: ravali.url,
+    photo: images.doctors.ravali,
   },
   {
     slug: "dr-chandana",
@@ -132,7 +125,7 @@ export const doctors: Doctor[] = [
     expertise: ["Pulmonary Function Testing", "Preventive Respiratory Care"],
     languages: "English • Telugu • Hindi",
     consultation: "Mon – Sat: 11:00 AM – 5:00 PM",
-    photo: chandana.url,
+    photo: images.doctors.chandana,
   },
   {
     slug: "dr-indra-sekhar",
@@ -143,6 +136,6 @@ export const doctors: Doctor[] = [
     expertise: ["Critical Care Stabilisation", "Emergency Medical Care"],
     languages: "English • Telugu • Hindi",
     consultation: "On-Call 24×7 • OPD Mon – Sat",
-    photo: indra.url,
+    photo: images.doctors.indra,
   },
 ];

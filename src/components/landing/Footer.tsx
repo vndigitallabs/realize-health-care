@@ -1,4 +1,4 @@
-import logo from "@/assets/realize_logo.png.asset.json";
+import { images } from "@/config/images";
 import {
   clinic,
   formattedAddress,
@@ -41,7 +41,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <img
-              src={logo.url}
+              src={images.logo}
               alt="Realize Healthcare logo"
               width={40}
               height={40}

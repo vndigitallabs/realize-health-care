@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ExternalLink, Menu, Phone, X } from "lucide-react";
-import logo from "@/assets/realize_logo.png.asset.json";
+import { images } from "@/config/images";
 import { clinic, hasPhone, telHref } from "@/config/clinic";
 import { track } from "@/lib/tracking";
 import { cn } from "@/lib/utils";
@@ -46,7 +46,7 @@ export function Header() {
       <div className="mx-auto grid h-16 w-full max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 sm:px-6 md:h-20 lg:flex lg:gap-4">
         <a href="#top" className="flex min-w-0 shrink-0 items-center gap-2 lg:mr-2">
           <img
-            src={logo.url}
+            src={images.logo}
             alt="Realize Healthcare logo"
             width={44}
             height={44}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ImageIcon, MapPin, X } from "lucide-react";
-import logo from "@/assets/realize_logo.png.asset.json";
+import { images } from "@/config/images";
 import { clinic, hasMaps } from "@/config/clinic";
 import { facilityPhotos, facilitySlots } from "@/data/content";
 import { track } from "@/lib/tracking";
@@ -67,7 +67,7 @@ export function Facility() {
               className="relative grid aspect-4/3 place-items-center overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-secondary/70 to-card p-4 text-center"
             >
               <img
-                src={logo.url}
+                src={images.logo}
                 alt=""
                 aria-hidden="true"
                 loading="lazy"
