@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { Reveal } from "./Reveal";
 
-export type SectionTone = "default" | "muted" | "mist" | "teal" | "lavender";
+export type SectionTone = "default" | "muted" | "mist" | "teal" | "lavender" | "sun";
 
 const toneClass: Record<SectionTone, string> = {
   default: "bg-background",
@@ -10,6 +10,7 @@ const toneClass: Record<SectionTone, string> = {
   mist: "tone-mist",
   teal: "tone-teal",
   lavender: "tone-lavender",
+  sun: "tone-sun",
 };
 
 export function Section({

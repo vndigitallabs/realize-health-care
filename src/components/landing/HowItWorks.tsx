@@ -5,7 +5,7 @@ import { BookButton } from "./actions";
 
 export function HowItWorks({ compact = false }: { compact?: boolean } = {}) {
   return (
-    <Section tone="lavender" labelledBy="how-heading">
+    <Section tone="sun" labelledBy="how-heading">
       <SectionHeading
         id="how-heading"
         eyebrow="How It Works"
