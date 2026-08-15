@@ -39,12 +39,11 @@ export function FamilySupport() {
               id="family-heading"
               className="mt-3 text-[1.7rem] leading-tight text-balance sm:text-3xl md:text-4xl"
             >
-              Looking for Support for a Family Member?
+              Not Sure Where to Start?
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground sm:text-base md:text-lg">
-              Sometimes a family member notices changes before the person experiencing them seeks
-              help. If you are unsure what to do, you can speak with our team about the appropriate
-              next step.
+              Sometimes a family member notices changes first. Speak with our team about the
+              concerns you have noticed and the appropriate next step.
             </p>
           </Reveal>
 
