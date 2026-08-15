@@ -17,7 +17,7 @@ const icons = [ClipboardList, UserRoundCheck, Users, HeartHandshake, Repeat, Shi
 export function WhyRealize({ limit, showCta = false }: { limit?: number; showCta?: boolean }) {
   const items = typeof limit === "number" ? pillars.slice(0, limit) : pillars;
   return (
-    <Section id="why-realize" tone="teal" labelledBy="why-heading">
+    <Section id="why-realize" tone="sun" labelledBy="why-heading">
       <SectionHeading
         id="why-heading"
         eyebrow="Why Realize Healthcare"

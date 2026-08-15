@@ -23,7 +23,7 @@ const items = [
 /** Compact 3-card trust strip for the homepage. */
 export function PrivacyStrip() {
   return (
-    <Section tone="mist" labelledBy="privacy-strip-heading">
+    <Section tone="sun" labelledBy="privacy-strip-heading">
       <SectionHeading id="privacy-strip-heading" eyebrow="Trust & Privacy" title="A Respectful Space to Talk" />
       <ul className="mt-8 grid gap-4 sm:mt-10 sm:gap-5 md:grid-cols-3">
         {items.map(({ icon: Icon, label, text }, i) => (

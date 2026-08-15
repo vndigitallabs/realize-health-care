@@ -214,6 +214,7 @@
   --tint-mist: oklch(0.98 0.005 250);
   --tint-teal: oklch(0.977 0.02 148);
   --tint-lavender: oklch(0.977 0.016 290);
+  --tint-sun: oklch(0.97 0.05 80);
   --gradient-mist: linear-gradient(180deg, var(--tint-mist), var(--background) 85%);
   --gradient-teal: linear-gradient(
     180deg,
@@ -225,12 +226,18 @@
     var(--tint-lavender),
     color-mix(in oklab, var(--tint-mist) 55%, var(--background))
   );
+  --gradient-sun: linear-gradient(
+    180deg,
+    var(--tint-sun),
+    color-mix(in oklab, var(--tint-sun) 40%, var(--background))
+  );
 }
 
 @theme inline {
   --color-tint-mist: var(--tint-mist);
   --color-tint-teal: var(--tint-teal);
   --color-tint-lavender: var(--tint-lavender);
+  --color-tint-sun: var(--tint-sun);
 }
 
 @utility tone-mist {
@@ -239,6 +246,10 @@
 
 @utility tone-teal {
   background-image: var(--gradient-teal);
+}
+
+@utility tone-sun {
+  background-image: var(--gradient-sun);
 }
 
 @utility tone-lavender {
