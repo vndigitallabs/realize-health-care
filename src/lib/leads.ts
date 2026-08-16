@@ -1,4 +1,5 @@
 import { getAttribution } from "./tracking";
+import { submitLeadToSheet } from "./leads.functions";
 
 export type LeadPayload = {
   name: string;
@@ -10,33 +11,24 @@ export type LeadPayload = {
 };
 
 /**
- * Frontend integration layer for CRM / n8n / Google Sheets / webhook / WhatsApp
- * automation. Point VITE_LEAD_WEBHOOK_URL at a server endpoint or automation
- * webhook. No API keys belong in frontend code — the receiving endpoint owns
- * authentication. Falls back to a safe mock when nothing is configured.
+ * Sends the lead to the server function that forwards it to the clinic's
+ * Google Sheet (Apps Script Web App). The webhook URL is a server-only
+ * secret — no credentials or endpoints are exposed in frontend code.
  */
-const endpoint = import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined;
-
 export async function submitLead(lead: LeadPayload): Promise<{ ok: boolean }> {
-  const body = {
-    ...lead,
-    source: "google-ads-landing",
-    submittedAt: new Date().toISOString(),
-    attribution: getAttribution(),
-  };
-
-  if (!endpoint) {
-    // Safe mock submission until a backend is connected.
-    if (import.meta.env.DEV) console.info("[lead:mock]", body);
-    await new Promise((r) => setTimeout(r, 600));
-    return { ok: true };
-  }
-
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+  const attribution = getAttribution();
+  return submitLeadToSheet({
+    data: {
+      ...lead,
+      message: lead.message ?? "",
+      utm_source: attribution.utm_source ?? "",
+      utm_medium: attribution.utm_medium ?? "",
+      utm_campaign: attribution.utm_campaign ?? "",
+      utm_term: attribution.utm_term ?? "",
+      utm_content: attribution.utm_content ?? "",
+      gclid: attribution.gclid ?? "",
+      landing_page: attribution.landing_page ?? "",
+      referrer: attribution.referrer ?? "",
+    },
   });
-  if (!res.ok) throw new Error("Lead submission failed");
-  return { ok: true };
 }
