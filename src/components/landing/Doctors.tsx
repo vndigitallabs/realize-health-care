@@ -8,7 +8,7 @@ import { Reveal } from "./Reveal";
 import { SafeImage } from "./SafeImage";
 import { scrollToForm } from "./actions";
 
-export function Doctors() {
+export function Doctors({ showHeading = true }: { showHeading?: boolean } = {}) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const toggle = (slug: string) => {
@@ -21,13 +21,15 @@ export function Doctors() {
 
   return (
     <Section id="doctors" labelledBy="doctors-heading">
-      <SectionHeading
-        id="doctors-heading"
-        eyebrow="Clinical Team"
-        title="Meet Our Clinical Team"
-        lead="Psychiatric, psychological and medical professionals working together on individual care plans."
-      />
-      <ul className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+      {showHeading ? (
+        <SectionHeading
+          id="doctors-heading"
+          eyebrow="Clinical Team"
+          title="Meet Our Clinical Team"
+          lead="Psychiatric, psychological and medical professionals working together on individual care plans."
+        />
+      ) : null}
+      <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4 [&:not(:first-child)]:mt-10 sm:[&:not(:first-child)]:mt-12">
         {doctors.map((doctor, i) => {
           const isOpen = expanded[doctor.slug] ?? false;
           const wa = whatsappHref(
