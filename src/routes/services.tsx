@@ -34,7 +34,7 @@ function ServicesPage() {
         title="Mental Health Services in Hyderabad"
         lead="Professional psychiatric and psychological care planned around each individual's clinical needs."
       />
-      <Services />
+      <Services showHeading={false} />
       <HowItWorks />
       <FinalCta />
     </PageLayout>
