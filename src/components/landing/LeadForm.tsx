@@ -62,6 +62,7 @@ export function LeadForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting || done) return;
     setFormError("");
     const data = Object.fromEntries(new FormData(event.currentTarget));
     const parsed = schema.safeParse(data);
