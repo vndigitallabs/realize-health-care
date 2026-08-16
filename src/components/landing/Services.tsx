@@ -27,17 +27,19 @@ const icons: Record<string, LucideIcon> = {
   "Child & Adolescent Psychiatry": Baby,
 };
 
-export function Services() {
+export function Services({ showHeading = true }: { showHeading?: boolean } = {}) {
   return (
     <Section id="services" tone="mist" labelledBy="services-heading">
-      <SectionHeading
-        id="services-heading"
-        eyebrow="Services"
-        title="Mental Health Services"
-        lead="Explore professional mental-health and psychiatric support based on individual clinical needs."
-      />
+      {showHeading ? (
+        <SectionHeading
+          id="services-heading"
+          eyebrow="Services"
+          title="Mental Health Services"
+          lead="Explore professional mental-health and psychiatric support based on individual clinical needs."
+        />
+      ) : null}
 
-      <ul className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+      <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 [&:not(:first-child)]:mt-10 sm:[&:not(:first-child)]:mt-12">
         {services.map((service, i) => {
           const Icon = icons[service.title] ?? Brain;
           return (
