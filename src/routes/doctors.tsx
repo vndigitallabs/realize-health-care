@@ -33,7 +33,7 @@ function DoctorsPage() {
         title="Meet Our Clinical Team"
         lead="Psychiatric, psychological and medical professionals working together on individual care plans."
       />
-      <Doctors />
+      <Doctors showHeading={false} />
       <FinalCta />
     </PageLayout>
   );
