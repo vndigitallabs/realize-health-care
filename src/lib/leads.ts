@@ -17,7 +17,7 @@ export type LeadPayload = {
  */
 export async function submitLead(lead: LeadPayload): Promise<{ ok: boolean }> {
   const attribution = getAttribution();
-  return submitLeadToSheet({
+  const result = await submitLeadToSheet({
     data: {
       ...lead,
       message: lead.message ?? "",
@@ -31,4 +31,9 @@ export async function submitLead(lead: LeadPayload): Promise<{ ok: boolean }> {
       referrer: attribution.referrer ?? "",
     },
   });
+  if (!result.ok) {
+    console.error("Lead submission failed", result);
+    throw new Error(`Lead submission failed [${result.status ?? "unknown"}]`);
+  }
+  return result;
 }
