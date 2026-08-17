@@ -37,11 +37,12 @@ export const submitLeadToSheet = createServerFn({ method: "POST" })
       throw new Error("Lead destination is not configured");
     }
 
-    const payload = {
+    // Apps Script reads e.parameter, so send form-urlencoded (no JSON, no preflight).
+    const params = new URLSearchParams({
       timestamp: new Date().toISOString(),
       name: data.name,
       phone: data.phone,
-      seekingFor: data.seekingFor,
+      seekingSupportFor: data.seekingFor,
       supportType: data.supportType,
       contactMethod: data.contactMethod,
       message: data.message,
@@ -54,20 +55,24 @@ export const submitLeadToSheet = createServerFn({ method: "POST" })
       landing_page: data.landing_page,
       referrer: data.referrer,
       source: "google-ads-landing",
-    };
+    });
 
     const response = await fetch(endpoint, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      redirect: "follow",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body: params.toString(),
+      // Apps Script answers a successful doPost with a 302 to a one-time
+      // googleusercontent echo URL; following it returns 405 even though the
+      // row was written. So stop at the redirect and treat it as success.
+      redirect: "manual",
     });
 
-    const text = await response.text();
-    if (!response.ok) {
-      console.error(`Google Sheets webhook failed [${response.status}]: ${text}`);
-      throw new Error(`Lead submission failed [${response.status}]`);
+    const status = response.status;
+    if (response.ok || status === 0 || status === 302 || status === 301 || status === 303) {
+      return { ok: true, status };
     }
 
-    return { ok: true };
+    const text = await response.text().catch(() => "");
+    console.error(`Google Sheets webhook failed [${status}]: ${text.slice(0, 500)}`);
+    return { ok: false, status, error: text.slice(0, 300) };
   });
