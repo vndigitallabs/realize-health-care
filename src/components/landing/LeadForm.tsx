@@ -64,7 +64,8 @@ export function LeadForm() {
     event.preventDefault();
     if (submitting || done) return;
     setFormError("");
-    const data = Object.fromEntries(new FormData(event.currentTarget));
+    const form = event.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
       const next: Errors = {};
@@ -81,8 +82,10 @@ export function LeadForm() {
       await submitLead(parsed.data);
       track("generate_lead", { form: "consultation_request" });
       track("appointment_booked", { form: "consultation_request" });
+      form.reset();
       setDone(true);
-    } catch {
+    } catch (error) {
+      console.error("Consultation form submission error:", error);
       setFormError("We couldn't send your request. Please try calling or messaging us instead.");
     } finally {
       setSubmitting(false);
