@@ -53,6 +53,7 @@ export function LeadForm() {
   const [done, setDone] = useState(false);
   const [formError, setFormError] = useState("");
   const started = useRef(false);
+  const submissionInFlight = useRef(false);
 
   const onStart = () => {
     if (started.current) return;
@@ -62,7 +63,7 @@ export function LeadForm() {
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (submitting || done) return;
+    if (submissionInFlight.current || submitting || done) return;
     setFormError("");
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form));
@@ -77,6 +78,7 @@ export function LeadForm() {
       return;
     }
     setErrors({});
+    submissionInFlight.current = true;
     setSubmitting(true);
     try {
       await submitLead(parsed.data);
@@ -88,6 +90,7 @@ export function LeadForm() {
       console.error("Consultation form submission error:", error);
       setFormError("We couldn't send your request. Please try calling or messaging us instead.");
     } finally {
+      submissionInFlight.current = false;
       setSubmitting(false);
     }
   }
