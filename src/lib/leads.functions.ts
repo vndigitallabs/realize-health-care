@@ -9,11 +9,21 @@ import { leadSchema } from "./leads.schema";
 export const submitLeadToSheet = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => leadSchema.parse(input))
   .handler(async ({ data }) => {
-    const endpoint = process.env["GOOGLE_SHEETS_WEBHOOK_URL"];
+    const endpoint = process.env["GOOGLE_SHEETS_WEBHOOK_URL"]?.trim();
     if (!endpoint) {
       console.error("GOOGLE_SHEETS_WEBHOOK_URL is not configured");
       throw new Error("Lead destination is not configured");
     }
+
+    let destination: URL;
+    try {
+      destination = new URL(endpoint);
+    } catch {
+      console.error("GOOGLE_SHEETS_WEBHOOK_URL is invalid");
+      throw new Error("Lead destination is not configured correctly");
+    }
+
+    const safeDestination = `${destination.origin}/macros/s/[redacted]/exec`;
 
     // Apps Script reads e.parameter, so send form-urlencoded (no JSON, no preflight).
     const params = new URLSearchParams({
@@ -36,21 +46,36 @@ export const submitLeadToSheet = createServerFn({ method: "POST" })
     });
 
     try {
+      if (process.env["NODE_ENV"] !== "production") {
+        console.info(`Submitting consultation request to ${safeDestination}`);
+      }
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
         body: params.toString(),
+        redirect: "follow",
       });
       const status = response.status;
       const text = await response.text().catch(() => "");
 
-      if (response.ok) return { ok: true, status };
+      if (response.ok) {
+        if (process.env["NODE_ENV"] !== "production") {
+          console.info(
+            `Consultation request accepted [${status}] by ${new URL(response.url).origin}: ${text.slice(0, 500)}`,
+          );
+        }
+        return { ok: true, status };
+      }
 
-      console.error(`Google Sheets webhook failed [${status}]: ${text.slice(0, 500)}`);
+      console.error(
+        `Google Sheets webhook failed [${status}] at ${safeDestination}: ${text.slice(0, 500)}`,
+      );
       return { ok: false, status, error: text.slice(0, 500) };
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`Google Sheets webhook request failed [network]: ${message}`);
+      console.error(
+        `Google Sheets webhook request failed [network] at ${safeDestination}: ${message}`,
+      );
       return { ok: false, status: 0, error: message };
     }
   });
