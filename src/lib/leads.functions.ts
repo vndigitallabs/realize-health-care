@@ -9,7 +9,9 @@ import { leadSchema } from "./leads.schema";
 export const submitLeadToSheet = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => leadSchema.parse(input))
   .handler(async ({ data }) => {
-    const endpoint = process.env["GOOGLE_SHEETS_WEBHOOK_URL"]?.trim();
+    const { FALLBACK_SHEETS_WEBHOOK_URL } = await import("./leads-endpoint.server");
+    const endpoint =
+      process.env["GOOGLE_SHEETS_WEBHOOK_URL"]?.trim() || FALLBACK_SHEETS_WEBHOOK_URL;
     if (!endpoint) {
       console.error("GOOGLE_SHEETS_WEBHOOK_URL is not configured");
       throw new Error("Lead destination is not configured");
