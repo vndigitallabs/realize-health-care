@@ -25,6 +25,7 @@ export const Route = createFileRoute("/")({
     meta: [
       { title },
       { name: "description", content: description },
+      { name: "google-site-verification", content: "cWLEqEw-B8DnXjV0ifeLUxC887qk60wXntfbGvP-0cc" },
       { name: "keywords", content: "psychiatrist Hyderabad, mental health clinic Hyderabad" },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
