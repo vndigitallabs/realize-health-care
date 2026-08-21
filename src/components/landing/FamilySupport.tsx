@@ -67,6 +67,7 @@ export function FamilySupport() {
             <TalkToSpecialistButton
               location="family_section"
               variant="default"
+              channel="call"
               className="w-full sm:w-auto"
             />
             <WhatsAppButton

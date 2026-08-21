@@ -49,7 +49,12 @@ export function WhyRealize({ limit, showCta = false }: { limit?: number; showCta
       </ul>
       {showCta ? (
         <Reveal className="mt-8 flex justify-center sm:mt-10">
-          <BookButton location="why_realize" className="w-full sm:w-auto" />
+          <BookButton
+            location="why_realize"
+            channel="whatsapp"
+            whatsappMessage="Hello Realize Healthcare, I would like to book a consultation."
+            className="w-full sm:w-auto"
+          />
         </Reveal>
       ) : null}
     </Section>

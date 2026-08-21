@@ -45,6 +45,8 @@ export function HowItWorks({ compact = false }: { compact?: boolean } = {}) {
         <BookButton
           location="how_it_works"
           label="Book Your Consultation"
+          channel="whatsapp"
+          whatsappMessage="Hello Realize Healthcare, I would like to book a consultation."
           className="w-full sm:w-auto"
         />
       </div>
