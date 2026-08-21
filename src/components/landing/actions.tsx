@@ -144,22 +144,43 @@ export function TalkToSpecialistButton({
   className,
   location,
   variant = "outline",
+  channel = "form",
 }: {
   className?: string;
   location: string;
   variant?: "default" | "outline" | "secondary";
+  channel?: "form" | "call";
 }) {
+  const isLink = channel === "call" && hasPhone;
+  const onClick = () => {
+    track("cta_click", { cta: "talk_to_specialist", location });
+    if (channel === "call") {
+      track("phone_click", { location });
+      if (!hasPhone) scrollToForm();
+    } else {
+      scrollToForm();
+    }
+  };
+
   return (
     <Button
+      asChild={isLink}
       size="lg"
       variant={variant}
       className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
-      onClick={() => {
-        track("cta_click", { cta: "talk_to_specialist", location });
-        scrollToForm();
-      }}
+      {...(isLink ? {} : { onClick })}
     >
-      Talk to a Specialist
+      {isLink ? (
+        <a href={telHref} onClick={onClick}>
+          <Phone aria-hidden="true" />
+          Talk to a Specialist
+          {clinic.phoneDisplay ? <span className="sr-only"> {clinic.phoneDisplay}</span> : null}
+        </a>
+      ) : (
+        <span className="inline-flex items-center gap-2">
+          Talk to a Specialist
+        </span>
+      )}
     </Button>
   );
 }
