@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { PageLayout } from "@/components/landing/PageLayout";
 import { Hero } from "@/components/landing/Hero";
+import { EmergencySupport } from "@/components/landing/EmergencySupport";
 import { TrustStrip } from "@/components/landing/TrustStrip";
 import { ServicesPreview } from "@/components/landing/ServicesPreview";
 import { WhyRealize } from "@/components/landing/WhyRealize";
