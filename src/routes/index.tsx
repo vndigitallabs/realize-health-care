@@ -74,6 +74,7 @@ function LandingPage() {
   return (
     <PageLayout>
       <Hero />
+      <EmergencySupport />
       <TrustStrip />
       <ServicesPreview />
       <WhyRealize limit={4} showCta />
