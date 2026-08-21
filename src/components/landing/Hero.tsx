@@ -66,7 +66,7 @@ export function Hero() {
             height={1024}
             fetchPriority="high"
             decoding="async"
-            className="relative aspect-4/3 w-full rounded-[1.75rem] border border-border/70 object-cover shadow-card sm:rounded-[2rem]"
+            className="hero-float relative aspect-4/3 w-full rounded-[1.75rem] border border-border/70 object-cover shadow-card sm:rounded-[2rem]"
           />
           <div className="glass-card absolute -bottom-5 left-4 hidden max-w-[15rem] p-4 sm:block">
             <p className="font-sans text-sm font-semibold">Consultation first</p>

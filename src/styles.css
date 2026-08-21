@@ -344,8 +344,25 @@
   animation-delay: var(--fade-delay, 0ms);
 }
 
+/* Professional, subtle vertical float for the hero image. */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@utility hero-float {
+  animation: hero-float 5s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .fade-up {
+  .fade-up,
+  .hero-float {
     animation: none;
   }
 }
