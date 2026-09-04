@@ -63,6 +63,37 @@ export function Doctors({ showHeading = true }: { showHeading?: boolean } = {}) 
                 <p className="mt-1 text-sm font-medium text-primary">{doctor.role}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{doctor.qualification}</p>
 
+                <div className="mt-4 flex flex-col gap-2">
+                  {hasWhatsapp && wa ? (
+                    <a
+                      href={wa}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() =>
+                        track("whatsapp_click", { location: "doctor_card", doctor: doctor.slug })
+                      }
+                      className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-full border border-primary/30 px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
+                    >
+                      <MessageCircle className="size-4" aria-hidden="true" />
+                      WhatsApp {doctor.name.split(" ")[0]}
+                    </a>
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      track("doctor_profile_view", { doctor: doctor.slug });
+                      track("appointment_request", {
+                        location: "doctor_card",
+                        doctor: doctor.slug,
+                      });
+                      scrollToForm();
+                    }}
+                    className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  >
+                    Request a Consultation
+                  </button>
+                </div>
+
                 <button
                   type="button"
                   onClick={() => toggle(doctor.slug)}
