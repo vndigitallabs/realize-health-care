@@ -1,6 +1,7 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { doctors } from "@/data/doctors";
+import { hasWhatsapp, whatsappHref } from "@/config/clinic";
 import { track } from "@/lib/tracking";
 import { Section, SectionHeading } from "./Section";
 import { Reveal } from "./Reveal";
