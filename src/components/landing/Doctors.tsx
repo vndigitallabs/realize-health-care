@@ -139,36 +139,6 @@ export function Doctors({ showHeading = true }: { showHeading?: boolean } = {}) 
                         <dd className="min-w-0">{doctor.consultation}</dd>
                       </div>
                     </dl>
-                    <div className="mt-5 flex flex-col gap-2">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          track("doctor_profile_view", { doctor: doctor.slug });
-                          track("appointment_request", {
-                            location: "doctor_card",
-                            doctor: doctor.slug,
-                          });
-                          scrollToForm();
-                        }}
-                        className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
-                      >
-                        Request a Consultation
-                      </button>
-                      {hasWhatsapp && wa ? (
-                        <a
-                          href={wa}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() =>
-                            track("whatsapp_click", { location: "doctor_card", doctor: doctor.slug })
-                          }
-                          className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-full border border-primary/30 px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
-                        >
-                          <MessageCircle className="size-4" aria-hidden="true" />
-                          WhatsApp
-                        </a>
-                      ) : null}
-                    </div>
                   </div>
                 </div>
               </div>
