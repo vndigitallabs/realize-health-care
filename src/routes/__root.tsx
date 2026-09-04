@@ -106,24 +106,23 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* Google Tag Manager */}
-        <script>{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P4WBL765');`}</script>
+        {/* Google Tag Manager + Google Ads gtag.js (deferred until idle/first interaction) */}
+        <script>{`window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+gtag('js',new Date());
+gtag('config','AW-18376870369');
+(function(w,d){var loaded=false;
+function load(){if(loaded)return;loaded=true;
+w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+var f=d.getElementsByTagName('script')[0];
+[ 'https://www.googletagmanager.com/gtm.js?id=GTM-P4WBL765',
+  'https://www.googletagmanager.com/gtag/js?id=AW-18376870369' ].forEach(function(src){
+  var j=d.createElement('script');j.async=true;j.src=src;f.parentNode.insertBefore(j,f);});
+['scroll','pointerdown','keydown','touchstart'].forEach(function(e){w.removeEventListener(e,load,{passive:true});});}
+['scroll','pointerdown','keydown','touchstart'].forEach(function(e){w.addEventListener(e,load,{passive:true,once:true});});
+if('requestIdleCallback' in w){w.requestIdleCallback(load,{timeout:4000});}else{w.setTimeout(load,3000);}
+})(window,document);`}</script>
         {/* End Google Tag Manager */}
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18376870369"
-        ></script>
-        <script>
-          {`window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-18376870369');`}
-        </script>
         <HeadContent />
       </head>
       <body>
