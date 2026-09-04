@@ -18,47 +18,68 @@ export function FeaturedDoctors() {
         lead="Psychiatric, psychological and medical professionals working together on individual care plans."
       />
       <ul className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:gap-5 lg:grid-cols-4">
-        {doctors.slice(0, 4).map((doctor, i) => (
-          <Reveal
-            as="li"
-            key={doctor.slug}
-            delay={(i % 4) * 80}
-            className="premium-card premium-card-hover group flex h-full flex-col overflow-hidden"
-          >
-            <SafeImage
-              src={doctor.photo}
-              alt={`${doctor.name}, ${doctor.role}`}
-              loading="lazy"
-              decoding="async"
-              width={640}
-              height={800}
-              className="aspect-4/5 w-full bg-secondary object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-            />
-            <div className="flex flex-1 flex-col p-4 sm:p-5">
-              <h3 className="font-sans text-[15px] leading-snug font-semibold text-balance sm:text-[17px]">
-                {doctor.name}
-              </h3>
-              <p className="mt-1 line-clamp-2 text-[13px] font-medium text-primary sm:text-sm">
-                {doctor.role}
-              </p>
-              <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">
-                {doctor.qualification}
-              </p>
-              <Link
-                to="/doctors"
-                hash={doctor.slug}
-                onClick={() => track("doctor_profile_view", { doctor: doctor.slug })}
-                className="mt-4 inline-flex min-h-10 items-center gap-1.5 self-start text-sm font-semibold text-primary"
-              >
-                View Profile
-                <ArrowRight
-                  className="size-4 transition-transform group-hover:translate-x-1"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </Reveal>
-        ))}
+        {doctors.slice(0, 4).map((doctor, i) => {
+          const wa = whatsappHref(
+            `Hello Realize Healthcare, I would like to request a consultation with ${doctor.name}.`,
+          );
+          return (
+            <Reveal
+              as="li"
+              key={doctor.slug}
+              delay={(i % 4) * 80}
+              className="premium-card premium-card-hover group flex h-full flex-col overflow-hidden"
+            >
+              <SafeImage
+                src={doctor.photo}
+                alt={`${doctor.name}, ${doctor.role}`}
+                loading="lazy"
+                decoding="async"
+                width={640}
+                height={800}
+                className="aspect-4/5 w-full bg-secondary object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div className="flex flex-1 flex-col p-4 sm:p-5">
+                <h3 className="font-sans text-[15px] leading-snug font-semibold text-balance sm:text-[17px]">
+                  {doctor.name}
+                </h3>
+                <p className="mt-1 line-clamp-2 text-[13px] font-medium text-primary sm:text-sm">
+                  {doctor.role}
+                </p>
+                <p className="mt-1 text-[13px] text-muted-foreground sm:text-sm">
+                  {doctor.qualification}
+                </p>
+
+                {hasWhatsapp && wa ? (
+                  <a
+                    href={wa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() =>
+                      track("whatsapp_click", { location: "featured_doctor_card", doctor: doctor.slug })
+                    }
+                    className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-full border border-primary/30 px-4 text-[13px] font-semibold text-primary transition-colors hover:bg-primary/5 sm:text-sm"
+                  >
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    WhatsApp {doctor.name.split(" ")[0]}
+                  </a>
+                ) : null}
+
+                <Link
+                  to="/doctors"
+                  hash={doctor.slug}
+                  onClick={() => track("doctor_profile_view", { doctor: doctor.slug })}
+                  className="mt-3 inline-flex min-h-10 items-center gap-1.5 self-start text-sm font-semibold text-primary"
+                >
+                  View Profile
+                  <ArrowRight
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </div>
+            </Reveal>
+          );
+        })}
       </ul>
       <Reveal className="mt-8 flex justify-center sm:mt-10">
         <Link
