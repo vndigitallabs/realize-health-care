@@ -102,16 +102,17 @@ const FONT_CSS =
   "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap";
 
 function RootShell({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const link = document.getElementById("realize-fonts") as HTMLLinkElement | null;
+    if (link && link.media !== "all") link.media = "all";
+  }, []);
+
   return (
     <html lang="en">
       <head>
         {/* Non-blocking web fonts: shortens the critical request chain */}
         <link rel="preload" as="style" href={FONT_CSS} />
         <link id="realize-fonts" rel="stylesheet" href={FONT_CSS} media="print" />
-        <script>{`(function(){var l=document.getElementById('realize-fonts');
-if(!l)return;
-function on(){l.media='all';}
-if(l.sheet){on();}else{l.addEventListener('load',on);setTimeout(on,2000);}})();`}</script>
         <noscript>
           <link rel="stylesheet" href={FONT_CSS} />
         </noscript>
