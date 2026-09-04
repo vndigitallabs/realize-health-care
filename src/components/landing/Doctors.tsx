@@ -75,7 +75,7 @@ export function Doctors({ showHeading = true }: { showHeading?: boolean } = {}) 
                       className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-full border border-primary/30 px-5 text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
                     >
                       <MessageCircle className="size-4" aria-hidden="true" />
-                      WhatsApp {doctor.name.split(" ")[0]}
+                      WhatsApp
                     </a>
                   ) : null}
                   <button
