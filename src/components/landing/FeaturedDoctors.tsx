@@ -60,7 +60,7 @@ export function FeaturedDoctors() {
                     className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-1.5 rounded-full border border-primary/30 px-4 text-[13px] font-semibold text-primary transition-colors hover:bg-primary/5 sm:text-sm"
                   >
                     <MessageCircle className="size-4" aria-hidden="true" />
-                    WhatsApp {doctor.name.split(" ")[0]}
+                    WhatsApp
                   </a>
                 ) : null}
 
