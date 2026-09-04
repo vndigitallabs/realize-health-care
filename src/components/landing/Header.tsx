@@ -50,9 +50,9 @@ export function Header() {
           <SafeImage
             src={images.logo}
             alt="Realize Healthcare logo"
-            width={56}
-            height={56}
-            className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12 md:h-14 md:w-14"
+            width={72}
+            height={72}
+            className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14 md:h-16 md:w-16"
             fallbackClassName="rounded-lg"
           />
           <span className="font-display text-[13px] leading-tight font-semibold tracking-tight whitespace-nowrap sm:text-[15px] lg:text-[17px]">
