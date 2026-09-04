@@ -107,13 +107,11 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         {/* Non-blocking web fonts: shortens the critical request chain */}
         <link rel="preload" as="style" href={FONT_CSS} />
-        <link
-          rel="stylesheet"
-          href={FONT_CSS}
-          media="print"
-          // eslint-disable-next-line react/no-unknown-property
-          {...({ onLoad: "this.media='all'" } as unknown as Record<string, string>)}
-        />
+        <link id="realize-fonts" rel="stylesheet" href={FONT_CSS} media="print" />
+        <script>{`(function(){var l=document.getElementById('realize-fonts');
+if(!l)return;
+function on(){l.media='all';}
+if(l.sheet){on();}else{l.addEventListener('load',on);setTimeout(on,2000);}})();`}</script>
         <noscript>
           <link rel="stylesheet" href={FONT_CSS} />
         </noscript>
