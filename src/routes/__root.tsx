@@ -90,10 +90,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap",
-      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,10 +98,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const FONT_CSS =
+  "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap";
+
 function RootShell({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const link = document.getElementById("realize-fonts") as HTMLLinkElement | null;
+    if (link && link.media !== "all") link.media = "all";
+  }, []);
+
   return (
     <html lang="en">
       <head>
+        {/* Non-blocking web fonts: shortens the critical request chain */}
+        <link rel="preload" as="style" href={FONT_CSS} />
+        <link id="realize-fonts" rel="stylesheet" href={FONT_CSS} media="print" />
+        <noscript>
+          <link rel="stylesheet" href={FONT_CSS} />
+        </noscript>
         {/* Google Tag Manager + Google Ads gtag.js (deferred until idle/first interaction) */}
         <script>{`window.dataLayer=window.dataLayer||[];
 window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
