@@ -89,26 +89,34 @@ export function ExitIntent() {
           <X className="size-5" aria-hidden="true" />
         </button>
         <p className="text-[11px] font-semibold tracking-[0.2em] text-primary uppercase">
-          Before you go
+          Before You Leave
         </p>
         <h2
           id="exit-intent-heading"
           className="mt-3 text-[1.5rem] leading-tight text-balance sm:text-2xl"
         >
-          Talk to a Psychiatrist Before You Leave
+          Your First Psychiatric Consultation is FREE
         </h2>
+        <p className="mx-auto mt-2 max-w-md text-[15px] font-semibold leading-relaxed text-primary">
+          Valued at ₹1,000
+        </p>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
           A short, confidential conversation with our clinical team can help you understand the
           appropriate next step for you or a family member.
         </p>
         <div className="mt-6 grid gap-3">
-          <BookButton location="exit_intent" className="w-full" />
-          <div className="grid gap-3 sm:grid-cols-2">
-            <CallButton location="exit_intent" className="w-full" />
-            <WhatsAppButton location="exit_intent" className="w-full" />
-          </div>
+          <ClaimFreeButton location="exit_intent" className="w-full" />
+          <CallButton
+            location="exit_intent"
+            label="Call Realize Healthcare"
+            variant="outline"
+            className="w-full"
+          />
         </div>
         <p className="mt-4 text-xs text-muted-foreground">
+          Terms may apply. Subject to eligibility and clinic availability.
+        </p>
+        <p className="mt-2 text-xs text-muted-foreground">
           Your enquiry is private and handled by our care team.
         </p>
       </div>
