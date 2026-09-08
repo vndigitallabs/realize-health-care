@@ -18,7 +18,9 @@ export type TrackEvent =
   | "faq_open"
   | "doctor_profile_view"
   | "doctor_card_expand"
-  | "exit_intent_shown";
+  | "exit_intent_shown"
+  | "free_consultation_offer_view"
+  | "free_consultation_offer_click";
 
 type Params = Record<string, string | number | boolean | undefined>;
 

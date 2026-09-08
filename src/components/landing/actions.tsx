@@ -1,4 +1,4 @@
-import { Phone, MessageCircle, CalendarCheck } from "lucide-react";
+import { Phone, MessageCircle, CalendarCheck, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { clinic, hasPhone, hasWhatsapp, telHref, whatsappHref } from "@/config/clinic";
 import { track } from "@/lib/tracking";
