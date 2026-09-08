@@ -140,6 +140,31 @@ export function WhatsAppButton({
   );
 }
 
+export function ClaimFreeButton({
+  className,
+  label = "Claim Free Consultation",
+  location,
+  size = "lg",
+  variant = "default",
+}: Common & { size?: "default" | "lg" | "sm"; variant?: "default" | "outline" | "secondary" }) {
+  const onClick = () => {
+    track("free_consultation_offer_click", { location });
+    track("appointment_request", { location: "claim_free_consultation" });
+    scrollToForm();
+  };
+  return (
+    <Button
+      size={size}
+      variant={variant}
+      className={cn("min-h-12 rounded-full px-7 text-[15px] font-semibold", className)}
+      onClick={onClick}
+    >
+      <Gift className="size-4" aria-hidden="true" />
+      {label}
+    </Button>
+  );
+}
+
 export function TalkToSpecialistButton({
   className,
   location,

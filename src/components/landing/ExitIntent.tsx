@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { track } from "@/lib/tracking";
-import { BookButton, CallButton, WhatsAppButton } from "./actions";
+import { CallButton, ClaimFreeButton } from "./actions";
 
 const STORAGE_KEY = "rh_exit_intent_shown";
 
@@ -27,6 +27,7 @@ export function ExitIntent() {
       }
       setOpen(true);
       track("exit_intent_shown", { location: "exit_intent" });
+      track("free_consultation_offer_view", { location: "exit_intent" });
       cleanup();
     };
 
