@@ -27,9 +27,12 @@ export const clinic = {
     country: "IN",
   },
 
-  /** Exact verified location query used for Google Maps links and embeds. */
+  /** Exact verified location query used for Google Maps directions. */
   mapsQuery:
     "Plot No. 1, South East Part, 2nd Floor, Surya Towers, Koheda Road, Beside Rice Mill, Pedda Amberpet, Hyderabad, Telangana 501505",
+
+  /** Verified coordinates for Surya Towers (source: Wikimapia listing for Surya Towers, Hyderabad). */
+  coordinates: { lat: 17.3713889, lng: 78.5388889 },
 
   /** Directions link that opens Google Maps centered on the verified clinic location. */
   mapsUrl:
@@ -44,8 +47,8 @@ export const clinic = {
     "Hello Realize Healthcare, I would like to know more about booking a mental-health consultation.",
 } as const;
 
-/** Short, geocodable form of the address used for the embedded map. */
-export const mapQuery = clinic.mapsQuery;
+/** Coordinates used for the embedded map so it centers precisely on the clinic. */
+export const mapQuery = `${clinic.coordinates.lat},${clinic.coordinates.lng}`;
 
 export const hasPhone = clinic.phone.length > 0;
 export const hasWhatsapp = clinic.whatsapp.length > 0;
