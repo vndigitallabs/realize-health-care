@@ -27,12 +27,9 @@ export const clinic = {
     country: "IN",
   },
 
-  /** Directions link built from the verified address. */
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent(
-      "Realize Healthcare, Plot No. 1, Surya Towers, Koheda Road, Pedda Amberpet, Hyderabad 501505",
-    ),
+  /** Exact verified location query used for Google Maps links and embeds. */
+  mapsQuery:
+    "Plot No. 1, South East Part, 2nd Floor, Surya Towers, Koheda Road, Beside Rice Mill, Pedda Amberpet, Hyderabad, Telangana 501505",
 
   hours: "Mon – Sat: 10:00 AM – 7:00 PM",
 
@@ -40,8 +37,13 @@ export const clinic = {
     "Hello Realize Healthcare, I would like to know more about booking a mental-health consultation.",
 } as const;
 
+/** Directions link that opens Google Maps centered on the verified clinic location. */
+export const mapsUrl =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent(clinic.mapsQuery);
+
 /** Short, geocodable form of the address used for the embedded map. */
-export const mapQuery = "Surya Towers, Koheda Road, Pedda Amberpet, Hyderabad 501505";
+export const mapQuery = clinic.mapsQuery;
 
 export const hasPhone = clinic.phone.length > 0;
 export const hasWhatsapp = clinic.whatsapp.length > 0;
