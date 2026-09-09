@@ -360,9 +360,60 @@
   will-change: transform;
 }
 
+/* Premium free-consultation offer card: elegant green border + soft glow. */
+@utility offer-box {
+  border: 1.5px solid color-mix(in oklab, var(--color-primary) 38%, transparent);
+  border-radius: var(--radius-2xl);
+  background-image: linear-gradient(
+    145deg,
+    var(--color-card) 60%,
+    color-mix(in oklab, var(--color-primary) 5%, var(--color-card))
+  );
+  box-shadow:
+    0 2px 4px color-mix(in oklab, var(--color-foreground) 3%, transparent),
+    0 18px 40px -20px color-mix(in oklab, var(--color-foreground) 14%, transparent),
+    0 0 0 1px color-mix(in oklab, var(--color-primary) 12%, transparent),
+    0 0 28px -10px color-mix(in oklab, var(--color-primary) 16%, transparent);
+}
+
+/* Subtle attention pulse for the free-consultation offer card. */
+@keyframes offer-pulse {
+  0%,
+  70% {
+    transform: scale(1);
+    box-shadow:
+      0 2px 4px color-mix(in oklab, var(--color-foreground) 3%, transparent),
+      0 18px 40px -20px color-mix(in oklab, var(--color-foreground) 14%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--color-primary) 12%, transparent),
+      0 0 28px -10px color-mix(in oklab, var(--color-primary) 16%, transparent);
+  }
+  85% {
+    transform: scale(1.015);
+    box-shadow:
+      0 2px 4px color-mix(in oklab, var(--color-foreground) 3%, transparent),
+      0 18px 40px -20px color-mix(in oklab, var(--color-foreground) 14%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--color-primary) 20%, transparent),
+      0 0 36px -8px color-mix(in oklab, var(--color-primary) 28%, transparent);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 2px 4px color-mix(in oklab, var(--color-foreground) 3%, transparent),
+      0 18px 40px -20px color-mix(in oklab, var(--color-foreground) 14%, transparent),
+      0 0 0 1px color-mix(in oklab, var(--color-primary) 12%, transparent),
+      0 0 28px -10px color-mix(in oklab, var(--color-primary) 16%, transparent);
+  }
+}
+
+@utility offer-pulse {
+  animation: offer-pulse 2.2s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-up,
-  .hero-float {
+  .hero-float,
+  .offer-pulse {
     animation: none;
   }
 }
