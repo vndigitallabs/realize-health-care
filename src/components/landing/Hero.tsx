@@ -60,7 +60,7 @@ export function Hero() {
           </p>
           <div
             ref={offerRef}
-            className="mt-6 w-full rounded-2xl border border-primary/15 bg-card p-4 shadow-card sm:max-w-md sm:rounded-3xl sm:p-5"
+            className="offer-box offer-pulse mt-6 w-full p-5 sm:max-w-md sm:p-6"
           >
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-primary uppercase">
               <Gift className="size-3.5" aria-hidden="true" />
@@ -78,10 +78,13 @@ export function Hero() {
             <p className="mt-2 max-w-xs text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
               Take the first step towards professional mental-health care.
             </p>
-            <ClaimFreeButton location="hero_offer_card" className="mt-4 w-full sm:w-auto" />
+            <ClaimFreeButton
+              location="hero_offer_card"
+              label="Book Free Consultation"
+              className="mt-5 w-full transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            />
           </div>
-          <div className="mt-7 grid gap-3 sm:auto-cols-max sm:grid-flow-col">
-            <BookButton location="hero" className="w-full sm:w-auto" />
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton location="hero" label="WhatsApp Now" className="w-full sm:w-auto" />
             <CallButton location="hero" className="w-full sm:w-auto" />
           </div>
