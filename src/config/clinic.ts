@@ -31,16 +31,18 @@ export const clinic = {
   mapsQuery:
     "Plot No. 1, South East Part, 2nd Floor, Surya Towers, Koheda Road, Beside Rice Mill, Pedda Amberpet, Hyderabad, Telangana 501505",
 
+  /** Directions link that opens Google Maps centered on the verified clinic location. */
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(
+      "Plot No. 1, South East Part, 2nd Floor, Surya Towers, Koheda Road, Beside Rice Mill, Pedda Amberpet, Hyderabad, Telangana 501505",
+    ),
+
   hours: "Mon – Sat: 10:00 AM – 7:00 PM",
 
   whatsappPrefill:
     "Hello Realize Healthcare, I would like to know more about booking a mental-health consultation.",
 } as const;
-
-/** Directions link that opens Google Maps centered on the verified clinic location. */
-export const mapsUrl =
-  "https://www.google.com/maps/search/?api=1&query=" +
-  encodeURIComponent(clinic.mapsQuery);
 
 /** Short, geocodable form of the address used for the embedded map. */
 export const mapQuery = clinic.mapsQuery;
