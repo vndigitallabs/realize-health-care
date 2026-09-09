@@ -3,7 +3,7 @@ import { Gift, HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
 import { images } from "@/config/images";
 import { track } from "@/lib/tracking";
 import { SafeImage } from "./SafeImage";
-import { BookButton, CallButton, ClaimFreeButton, WhatsAppButton } from "./actions";
+import { CallButton, ClaimFreeButton, WhatsAppButton } from "./actions";
 
 const trustPoints = [
   { icon: Stethoscope, label: "Qualified Clinical Team" },
