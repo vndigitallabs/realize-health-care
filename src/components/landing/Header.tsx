@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, ExternalLink, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { images } from "@/config/images";
@@ -73,7 +73,17 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const servicesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wa = whatsappHref();
+
+  const openServices = () => {
+    if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+    setServicesOpen(true);
+  };
+
+  const closeServicesSoon = () => {
+    servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 180);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -116,9 +126,9 @@ export function Header() {
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">
           <div
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-            onFocusCapture={() => setServicesOpen(true)}
+            onMouseEnter={openServices}
+            onMouseLeave={closeServicesSoon}
+            onFocusCapture={openServices}
             onBlurCapture={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget)) setServicesOpen(false);
             }}
