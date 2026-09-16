@@ -111,11 +111,7 @@ export function Header() {
         </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
+          <div className="relative">
             <button
               type="button"
               aria-expanded={servicesOpen}
