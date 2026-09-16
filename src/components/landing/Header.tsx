@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, ExternalLink, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { images } from "@/config/images";
@@ -20,6 +20,7 @@ const serviceGroups = [
     description: "Confidential recovery for every dependency.",
     tone: "bg-primary",
     dot: "bg-primary/10 text-primary",
+    panel: "border-primary/20 bg-primary/5",
     services: [
       "Alcohol De-Addiction",
       "Drug De-Addiction",
@@ -35,6 +36,7 @@ const serviceGroups = [
     description: "Expert psychiatric and psychological care.",
     tone: "bg-accent-foreground",
     dot: "bg-accent text-accent-foreground",
+    panel: "border-accent-foreground/20 bg-accent/45",
     services: [
       "Anxiety Disorders",
       "Depression",
@@ -52,6 +54,7 @@ const serviceGroups = [
     description: "End-to-end healing that lasts.",
     tone: "bg-chart-3",
     dot: "bg-muted text-chart-3",
+    panel: "border-chart-3/20 bg-chart-3/5",
     services: [
       "Medical Detox",
       "Psychiatric Care",
@@ -70,7 +73,17 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const servicesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wa = whatsappHref();
+
+  const openServices = () => {
+    if (servicesCloseTimer.current) clearTimeout(servicesCloseTimer.current);
+    setServicesOpen(true);
+  };
+
+  const closeServicesSoon = () => {
+    servicesCloseTimer.current = setTimeout(() => setServicesOpen(false), 180);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -111,7 +124,15 @@ export function Header() {
         </Link>
 
         <nav aria-label="Primary" className="ml-auto hidden items-center gap-5 lg:flex xl:gap-7">
-          <div className="relative">
+          <div
+            className="relative"
+            onMouseEnter={openServices}
+            onMouseLeave={closeServicesSoon}
+            onFocusCapture={openServices}
+            onBlurCapture={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setServicesOpen(false);
+            }}
+          >
             <button
               type="button"
               aria-expanded={servicesOpen}
@@ -131,9 +152,13 @@ export function Header() {
                 id="desktop-services-menu"
                 className="fixed top-20 left-1/2 z-60 w-[min(1120px,calc(100vw-2rem))] -translate-x-1/2 pt-3"
               >
-                <div className="grid grid-cols-3 gap-8 rounded-2xl border border-border bg-card p-7 shadow-card xl:gap-10 xl:p-8">
+                <div className="grid grid-cols-3 gap-4 rounded-2xl border border-border bg-card p-5 shadow-card xl:gap-5 xl:p-6">
                   {serviceGroups.map((group) => (
-                    <section key={group.title} aria-label={group.title}>
+                    <section
+                      key={group.title}
+                      aria-label={group.title}
+                      className={cn("rounded-xl border p-4", group.panel)}
+                    >
                       <div className="flex items-center gap-2.5">
                         <span className={cn("h-1.5 w-10 rounded-full", group.tone)} />
                         <h2 className="font-display text-[15px] font-semibold text-foreground uppercase">
