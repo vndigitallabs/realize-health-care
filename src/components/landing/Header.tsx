@@ -33,8 +33,8 @@ const serviceGroups = [
   {
     title: "Mental Health Services",
     description: "Expert psychiatric and psychological care.",
-    tone: "bg-accent",
-    dot: "bg-accent/10 text-accent",
+    tone: "bg-accent-foreground",
+    dot: "bg-accent text-accent-foreground",
     services: [
       "Anxiety Disorders",
       "Depression",
@@ -50,8 +50,8 @@ const serviceGroups = [
   {
     title: "Support and Recovery",
     description: "End-to-end healing that lasts.",
-    tone: "bg-info",
-    dot: "bg-info/10 text-info",
+    tone: "bg-chart-3",
+    dot: "bg-muted text-chart-3",
     services: [
       "Medical Detox",
       "Psychiatric Care",
