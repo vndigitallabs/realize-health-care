@@ -129,7 +129,7 @@ export function Header() {
             {servicesOpen ? (
               <div
                 id="desktop-services-menu"
-                className="absolute top-full left-1/2 z-60 w-[min(1120px,calc(100vw-2rem))] -translate-x-1/2 pt-6"
+                className="fixed top-20 left-1/2 z-60 w-[min(1120px,calc(100vw-2rem))] -translate-x-1/2 pt-3"
               >
                 <div className="grid grid-cols-3 gap-8 rounded-2xl border border-border bg-card p-7 shadow-card xl:gap-10 xl:p-8">
                   {serviceGroups.map((group) => (
