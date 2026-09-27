@@ -11,10 +11,10 @@ export const clinic = {
   website: "https://www.realizehealthcare.in/",
 
   /** Verified clinic phone number (E.164). */
-  phone: "+919553366366",
-  phoneDisplay: "+91 95533 66366",
+  phone: "+918519971651",
+  phoneDisplay: "+91 85199 71651",
   /** Verified WhatsApp number (digits only, with country code). */
-  whatsapp: "919553366366",
+  whatsapp: "918519971651",
 
   /** Verified clinic address. */
   address: {
