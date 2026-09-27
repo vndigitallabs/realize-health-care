@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { Gift, HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
+import { HeartHandshake, ShieldCheck, Stethoscope } from "lucide-react";
 import { images } from "@/config/images";
-import { track } from "@/lib/tracking";
 import { SafeImage } from "./SafeImage";
-import { CallButton, ClaimFreeButton, WhatsAppButton } from "./actions";
+import { CallButton, WhatsAppButton } from "./actions";
 
 const trustPoints = [
   { icon: Stethoscope, label: "Qualified Clinical Team" },
@@ -12,26 +10,6 @@ const trustPoints = [
 ];
 
 export function Hero() {
-  const offerRef = useRef<HTMLDivElement>(null);
-  const [offerViewed, setOfferViewed] = useState(false);
-
-  useEffect(() => {
-    const el = offerRef.current;
-    if (!el || offerViewed) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]?.isIntersecting) {
-          track("free_consultation_offer_view", { location: "hero_offer_card" });
-          setOfferViewed(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [offerViewed]);
-
   return (
     <section
       id="hero"
@@ -58,33 +36,7 @@ export function Hero() {
             Professional assessment and personalised care from a qualified multidisciplinary team.
             Speak with our clinicians to understand the right next step for you or your family.
           </p>
-          <div
-            ref={offerRef}
-            className="offer-box offer-pulse mt-6 w-full p-5 sm:max-w-md sm:p-6"
-          >
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold tracking-[0.12em] text-primary uppercase">
-              <Gift className="size-3.5" aria-hidden="true" />
-              SPECIAL OFFER
-            </span>
-            <p className="mt-3 text-[15px] font-semibold leading-snug text-foreground sm:text-base">
-              FIRST PSYCHIATRIC CONSULTATION
-            </p>
-            <p className="mt-1 text-4xl font-bold tracking-tight text-primary sm:text-5xl">
-              FREE
-            </p>
-            <p className="mt-1 text-sm font-semibold text-muted-foreground">
-              Worth ₹1,000
-            </p>
-            <p className="mt-2 max-w-xs text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
-              Take the first step towards professional mental-health care.
-            </p>
-            <ClaimFreeButton
-              location="hero_offer_card"
-              label="Book Free Consultation"
-              className="mt-5 w-full transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            />
-          </div>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <WhatsAppButton location="hero" label="WhatsApp Now" className="w-full sm:w-auto" />
             <CallButton location="hero" className="w-full sm:w-auto" />
           </div>
