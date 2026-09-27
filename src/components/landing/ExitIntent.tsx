@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { track } from "@/lib/tracking";
-import { CallButton, ClaimFreeButton } from "./actions";
+import { BookButton, CallButton } from "./actions";
 
 const STORAGE_KEY = "rh_exit_intent_shown";
 
@@ -27,7 +27,6 @@ export function ExitIntent() {
       }
       setOpen(true);
       track("exit_intent_shown", { location: "exit_intent" });
-      track("free_consultation_offer_view", { location: "exit_intent" });
       cleanup();
     };
 
@@ -95,17 +94,14 @@ export function ExitIntent() {
           id="exit-intent-heading"
           className="mt-3 text-[1.5rem] leading-tight text-balance sm:text-2xl"
         >
-          Your First Psychiatric Consultation is FREE
+          Talk to Our Team
         </h2>
-        <p className="mx-auto mt-2 max-w-md text-[15px] font-semibold leading-relaxed text-primary">
-          Valued at ₹1,000
-        </p>
         <p className="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-          A short, confidential conversation with our clinical team can help you understand the
-          appropriate next step for you or a family member.
+          Speak confidentially with our clinical team to understand the appropriate next step for
+          you or a family member.
         </p>
         <div className="mt-6 grid gap-3">
-          <ClaimFreeButton location="exit_intent" className="w-full" />
+          <BookButton location="exit_intent" label="Request a Consultation" className="w-full" />
           <CallButton
             location="exit_intent"
             label="Call Realize Healthcare"
@@ -114,9 +110,6 @@ export function ExitIntent() {
           />
         </div>
         <p className="mt-4 text-xs text-muted-foreground">
-          Terms may apply. Subject to eligibility and clinic availability.
-        </p>
-        <p className="mt-2 text-xs text-muted-foreground">
           Your enquiry is private and handled by our care team.
         </p>
       </div>
